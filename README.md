@@ -1,284 +1,299 @@
-# Envoy Ext-Proc Chain Bug Reproducer & Validation
+# Envoy Ext-Proc Chain Bug: BBR + EPP Validation
 
-Reproducer for [envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654) — the
-end-of-stream (EoS) interleaving bug when two `ext_proc` filters are chained in Envoy. This is
-the bug tracked by [gateway-api-inference-extension#2115](https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/2115)
-that affects **BBR + EPP** (body-based routing + endpoint picker protocol) in the Inference Gateway.
+Validation of [envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654) — the
+end-of-stream (EoS) bug when two `ext_proc` filters are chained in Envoy. Tracked by
+[gateway-api-inference-extension#2115](https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/2115).
 
 The fix is [envoyproxy/envoy#43175](https://github.com/envoyproxy/envoy/pull/43175), backported to
 Envoy 1.37 and included in Istio 1.29.1 via [istio/proxy#6843](https://github.com/istio/proxy/pull/6843).
 
-## Bug Summary
+## TL;DR
 
-When two `ext_proc` filters are in the same Envoy filter chain — one processing response body
-in `FULL_DUPLEX_STREAMED` mode and one processing headers only — the `observedEndStream()` flag
-in `filter_manager.cc` can become stale. When the header-only filter resumes via `commonContinue()`,
-it uses the stale flag to pass `end_of_stream=true` before all body data has been re-injected,
-causing **response truncation**.
+**The fix does not resolve the bug for the real BBR + EPP deployment.**
 
-**Symptoms:**
-- HTTP 200 responses with truncated body (e.g., 3966 bytes instead of 51200)
-- ext-proc server logs: `send error rpc error: code = Canceled desc = context canceled`
+- Istio 1.28.1 (no fix): 18/100 full responses, 82 truncated or empty
+- Istio 1.29.1 (with fix): 11/100 full responses, 89 truncated or empty
 
-## Results
+Tested with BBR (`main`) + EPP (`v1.4.0-rc.2`) + vLLM simulator, using 8KB request bodies with
+streaming responses. The fix (PR #43175) is confirmed present in the 1.29.1 binary but does not
+cover the timing variant that occurs when both filters use `FULL_DUPLEX_STREAMED` mode.
 
-### Stage 1: Istio 1.28.1 (Envoy 1.36.3-dev) — Bug Reproduced
+## What happens
 
-```
-Results: ok=75 truncated=24 error=1 total=100
-Truncated sizes: 47406 3966(x21) 18446 3966
-extproc2 send errors: 100
-```
+1. Client sends an 8KB request body. Envoy sets `observed_decode_end_stream_ = true`.
+2. BBR (ext_proc filter 1, `FULL_DUPLEX_STREAMED`) processes the body via its gRPC server and
+   injects it back into the filter chain chunk by chunk.
+3. The injected data hits EPP (ext_proc filter 2, also `FULL_DUPLEX_STREAMED`). EPP triggers its
+   own async gRPC call. The filter chain stops.
+4. EPP's gRPC response arrives. It calls `commonContinue()` which checks:
+   ```cpp
+   doData(observedEndStream() && !had_trailers_before_data);
+   ```
+   `observedEndStream()` returns `true` — set at step 1 when client data arrived.
+5. If BBR hasn't finished injecting all its data, `doData(true)` sends partial data to the
+   backend with `end_of_stream=true`. The backend receives a truncated request and returns a
+   truncated response.
 
-### Stage 2: Istio 1.29.1 (Envoy 1.37.1-dev) — Fix Analysis
+The fix (PR #43175) updates `observed_decode_end_stream_` during `injectDecodedDataToFilterChain`.
+But it only helps if BBR's inject happens **before** EPP calls `commonContinue()`. With both
+filters in `FULL_DUPLEX_STREAMED`, the timing is unpredictable — sometimes the inject wins,
+sometimes `commonContinue()` wins.
 
-The fix ([envoyproxy/envoy#43175](https://github.com/envoyproxy/envoy/pull/43175)) **is confirmed
-present** in the 1.29.1 binary:
-
-- Runtime feature `envoy_reloadable_features_ext_proc_inject_data_with_state_update` found in
-  `runtime_features.cc` and enabled by default (`RUNTIME_GUARD`)
-- Fix code verified in `filter_manager.cc` at both `injectEncodedDataToFilterChain` and
-  `injectDecodedDataToFilterChain`
-- Envoy commit `f8e895d3` (Feb 23, 2026) includes fix PR merged Feb 13, 2026
-
-**Important nuance:** The fix updates the `observed_encode_end_stream_` flag during
-`injectEncodedDataToFilterChain()`. This only helps when at least one body inject
-happens *before* the header-only filter resumes. See [Timing Variants](#timing-variants)
-for details.
-
-## Timing Variants
-
-The root cause is in `commonContinue()` at `filter_manager.cc:109,132`:
-
-```cpp
-// line 109 — headers path
-doHeaders(observedEndStream() && !bufferedData() && !hasTrailers());
-
-// line 132 — data path
-if (bufferedData()) {
-    doData(observedEndStream() && !had_trailers_before_data);
-}
-```
-
-There are two timing variants of this race:
-
-| Variant | Timing | Fix Covers? | Real-World Likelihood |
-|---------|--------|-------------|----------------------|
-| 1 | Body filter injects data **before** header-only filter resumes | **Yes** | High (body processing typically starts before header response arrives) |
-| 2 | Header-only filter resumes **before** any body inject | No | Lower (requires header ext-proc to respond faster than body ext-proc) |
-
-The upstream integration test (`TwoExtProcFiltersInResponseProcessing`) validates Variant 1.
-Our reproducer with `body-delay=20ms` triggers Variant 2.
-
-### Variant 1: Body injects first (fix works)
-
-```
-t=0   Backend response arrives, observedEndStream=true
-t=1   Filter-1 sends body chunks to extproc2
-t=2   extproc2 responds -> Filter-1 injects data with end_stream=false
-      ^^^ FIX: observed_encode_end_stream_ updated to FALSE
-t=3   More body injects (end_stream=false)...
-t=4   extproc1 responds -> Filter-0 calls commonContinue()
-      observedEndStream() returns FALSE (updated by fix at t=2)
-      doData(false) -> partial body sent WITHOUT eos -> correct, stream stays open
-t=5   Last body inject (end_stream=true) -> rest of body arrives -> complete response
-```
-
-### Variant 2: Header-only filter resumes first (fix does not help)
-
-```
-t=0   Backend response arrives, observedEndStream=true
-t=1   Filter-1 sends body chunks to extproc2 (slow, e.g. 20ms delay each)
-t=2   extproc1 responds -> Filter-0 calls commonContinue()
-      ^^^ No body inject has happened yet! Fix never fired.
-      observedEndStream() returns TRUE (stale, never updated)
-      doHeaders(true) or doData(true) -> eos=true sent downstream -> TRUNCATION
-t=3   extproc2 finally responds -> body inject attempted
-      But downstream stream already closed -> "context canceled" errors
-```
-
-### Why Variant 2 remains unfixed
-
-[@wbpcode](https://github.com/wbpcode) (Envoy maintainer) identified the deeper root cause in
-[envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654#issuecomment-2604889989):
-`commonContinue()` uses a **stream-level** `observedEndStream()` flag, but the correct behavior
-requires a **per-filter** end-stream flag. He proposed a two-step refactor:
-
-1. When a filter resumes, use a per-filter end_stream flag instead of the stream-level flag (fixes both variants)
-2. Per-filter body buffers (larger refactor, not strictly needed for this bug)
-
-Instead, PR [#43175](https://github.com/envoyproxy/envoy/pull/43175) took a narrower approach:
-update the stream-level flag during `injectDataToFilterChain`. This fixes Variant 1 but leaves
-Variant 2 unaddressed. The broader per-filter refactor was **never implemented** and there is
-no open PR or issue tracking it.
-
-## Reproducer Architecture
-
-```
-                    ┌──────────────┐
-                    │   curl (50KB │
-                    │   POST body) │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │    Envoy     │
-                    │  (proxyv2)   │
-                    │              │
-                    │ ┌──────────┐ │     ┌──────────────┐
-                    │ │ ext_proc │ │────▶│  extproc1     │
-                    │ │ filter-0 │ │     │  (hdr-only)   │
-                    │ │ hdr-only │ │◀────│  no delay     │
-                    │ └──────────┘ │     └──────────────┘
-                    │              │
-                    │ ┌──────────┐ │     ┌──────────────┐
-                    │ │ ext_proc │ │────▶│  extproc2     │
-                    │ │ filter-1 │ │     │  (body proc)  │
-                    │ │ FD_STREAM│ │◀────│  body-delay   │
-                    │ └──────────┘ │     └──────────────┘
-                    │              │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │  echo server │
-                    │  (echoes req │
-                    │   body back) │
-                    └──────────────┘
-```
-
-**Envoy filter config:**
-- Filter-0 (`ext_proc_cluster_1`): `response_header_mode: SEND`, `response_body_mode: NONE`
-- Filter-1 (`ext_proc_cluster_2`): `response_header_mode: SEND`, `response_body_mode: FULL_DUPLEX_STREAMED`
-
-**Response direction** (reverse of config order): `router → Filter-1 → Filter-0`
-
-## Quick Start
+## Deployment
 
 ### Prerequisites
 
-- Docker, kind, kubectl
-- Go 1.24+ (for building ext-proc and echo images)
+- kind, kubectl, helm
+- istioctl 1.28.1 and 1.29.1
 
-### Run the reproducer
+### Deploy the stack
 
 ```bash
-# Create kind cluster
-kind create cluster --name extproc-bug
+# Create cluster
+kind create cluster --name igw-validate
 
-# Build and load images
-cd repro-extproc
-docker build -t extproc-repro:latest -f extproc/Dockerfile extproc/
-docker build -t echo-repro:latest -f echo/Dockerfile echo/
-kind load docker-image extproc-repro:latest --name extproc-bug
-kind load docker-image echo-repro:latest --name extproc-bug
+# Gateway API CRDs
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml
 
-# Load the Istio proxy image (use docker save for multi-arch images)
-docker pull docker.io/istio/proxyv2:1.28.1
-docker save docker.io/istio/proxyv2:1.28.1 | \
-  docker exec -i extproc-bug-control-plane ctr --namespace=k8s.io images import -
+# Inference Extension CRDs
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/crd/bases/inference.networking.k8s.io_inferencepools.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/crd/bases/inference.networking.x-k8s.io_inferenceobjectives.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/crd/bases/inference.networking.x-k8s.io_inferencepoolimports.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/crd/bases/inference.networking.x-k8s.io_inferencepools.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/crd/bases/inference.networking.x-k8s.io_inferencemodelrewrites.yaml
 
-# Deploy
-kubectl apply -f manifests/repro.yaml
-kubectl -n extproc-repro rollout status deploy/envoy --timeout=120s
+# Istio (use 1.28.1 to reproduce, 1.29.1 to validate fix)
+ISTIO_VERSION=1.28.1
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=${ISTIO_VERSION} sh -
+./istio-${ISTIO_VERSION}/bin/istioctl install \
+  --set profile=minimal \
+  --set values.pilot.env.ENABLE_GATEWAY_API_INFERENCE_EXTENSION=true \
+  --set meshConfig.enableAutoMtls=false \
+  -y
 
-# Get endpoint
-NODEPORT=$(kubectl -n extproc-repro get svc envoy -o jsonpath='{.spec.ports[0].nodePort}')
-NODE_IP=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}')
+# Gateway
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/gateway/istio/gateway.yaml
 
-# Run load test (50KB body, 100 concurrent requests)
-BODY=$(python3 -c "print('A'*51200)")
-rm -f /tmp/resp_*
-for i in $(seq 1 100); do
-  curl -s -o /tmp/resp_$i -X POST -d "$BODY" "http://$NODE_IP:$NODEPORT/test" --max-time 120 &
+# vLLM simulator
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/vllm/sim-deployment.yaml
+
+# BBR adapter configmap
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api-inference-extension/raw/main/config/manifests/bbr/configmap.yaml
+
+# EPP v1.4.0-rc.2 + InferencePool (provider=istio)
+helm install vllm-llama3-8b-instruct \
+  --dependency-update \
+  --set inferencePool.modelServers.matchLabels.app=vllm-llama3-8b-instruct \
+  --set provider.name=istio \
+  --set experimentalHttpRoute.enabled=true \
+  --set inferenceExtension.image.tag=v1.4.0-rc.2 \
+  --version v1.4.0-rc.2 \
+  oci://us-central1-docker.pkg.dev/k8s-staging-images/gateway-api-inference-extension/charts/inferencepool
+
+# BBR from main (provider=istio)
+helm install body-based-router \
+  --set provider.name=istio \
+  --version v0 \
+  oci://us-central1-docker.pkg.dev/k8s-staging-images/gateway-api-inference-extension/charts/body-based-routing
+
+# InferenceObjective
+kubectl apply -f - <<EOF
+apiVersion: inference.networking.x-k8s.io/v1alpha2
+kind: InferenceObjective
+metadata:
+  name: llama-base
+spec:
+  priority: 2
+  poolRef:
+    name: vllm-llama3-8b-instruct
+EOF
+
+# Wait for pods
+kubectl rollout status deploy/vllm-llama3-8b-instruct deploy/body-based-router --timeout=120s
+```
+
+### Verify images
+
+```bash
+kubectl get pods -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.containers[0].image}{"\n"}{end}'
+kubectl exec deploy/inference-gateway-istio -c istio-proxy -- /usr/local/bin/envoy --version
+```
+
+Expected:
+- `istio/proxyv2:1.28.1` or `1.29.1`
+- `bbr:main`
+- `epp:v1.4.0-rc.2`
+- `llm-d-inference-sim:v0.7.1`
+
+### Verify the fix and runtime guard (1.29.1 only)
+
+The fix adds runtime feature `ext_proc_inject_data_with_state_update` to `runtime_features.cc`.
+It is a `RUNTIME_GUARD` (enabled by default). Verify it is active on the running proxy:
+
+```bash
+# Explicitly enable (idempotent — it's already on by default via RUNTIME_GUARD)
+kubectl exec deploy/inference-gateway-istio -c istio-proxy -- \
+  curl -s -X POST "localhost:15000/runtime_modify?envoy.reloadable_features.ext_proc_inject_data_with_state_update=true"
+
+# Confirm it's enabled
+kubectl exec deploy/inference-gateway-istio -c istio-proxy -- \
+  curl -s localhost:15000/runtime | grep -A 5 ext_proc
+```
+
+Expected output:
+```
+  "envoy.reloadable_features.ext_proc_inject_data_with_state_update": {
+   "layer_values": [
+    "",
+    "true"
+   ],
+   "final_value": "true"
+```
+
+Verify via envoy source that the feature exists in 1.29.1 but not 1.28.1:
+
+```bash
+# 1.29.1 has it:
+gh api repos/envoyproxy/envoy/contents/source/common/runtime/runtime_features.cc?ref=f8e895d391b2566e0674d782625219388c703ae1 \
+  | python3 -c "import sys,json,base64; print(base64.b64decode(json.load(sys.stdin)['content']).decode())" \
+  | grep ext_proc_inject_data_with_state_update
+
+# 1.28.1 does not:
+gh api repos/envoyproxy/envoy/contents/source/common/runtime/runtime_features.cc?ref=79ef833c1b953c6686afda8636cc2bc073669994 \
+  | python3 -c "import sys,json,base64; print(base64.b64decode(json.load(sys.stdin)['content']).decode())" \
+  | grep ext_proc_inject_data_with_state_update
+```
+
+## Reproduce the bug
+
+### Setup
+
+```bash
+GW_PORT=$(kubectl get svc inference-gateway-istio -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}')
+GW_IP=$(kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}')
+ENDPOINT="http://$GW_IP:$GW_PORT/v1/chat/completions"
+
+# Generate 8KB request body
+dd if=/dev/zero bs=1 count=8000 2>/dev/null | tr '\0' 'x' > /tmp/pad.txt
+printf '{"model":"meta-llama/Llama-3.1-8B-Instruct","messages":[{"role":"system","content":"' > /tmp/big.json
+cat /tmp/pad.txt >> /tmp/big.json
+printf '"},{"role":"user","content":"Hi"}],"max_tokens":500,"stream":true}' >> /tmp/big.json
+```
+
+### Test 1: Small body, non-streaming (passes — no truncation)
+
+```bash
+curl -s -o /dev/null -w "HTTP %{http_code} size=%{size_download}\n" \
+  -X POST "$ENDPOINT" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"meta-llama/Llama-3.1-8B-Instruct","messages":[{"role":"user","content":"Hi"}],"max_tokens":500}'
+```
+
+### Test 2: Large body + streaming (fails — truncation)
+
+Full response should be ~130KB. Most will be truncated:
+
+```bash
+# Single request
+curl -s -o /dev/null -w "size=%{size_download}\n" \
+  -X POST "$ENDPOINT" \
+  -H "Content-Type: application/json" \
+  -d @/tmp/big.json
+
+# Run 10 times — most will be truncated
+for i in $(seq 1 10); do
+  curl -s -o /dev/null -w "size=%{size_download}\n" \
+    -X POST "$ENDPOINT" \
+    -H "Content-Type: application/json" \
+    -d @/tmp/big.json --max-time 30
+done
+```
+
+Example output (full response is ~130KB, anything less is truncated):
+
+```
+size=7866
+size=5956
+size=135161
+size=6244
+size=11090
+size=0
+size=10506
+size=135282
+size=7851
+size=840
+```
+
+### Test 3: Load test (50 concurrent)
+
+```bash
+rm -f /tmp/igw_results.txt
+for i in $(seq 1 50); do
+  curl -s -o /dev/null -w "%{http_code} %{size_download}\n" \
+    -X POST "$ENDPOINT" \
+    -H "Content-Type: application/json" \
+    -d @/tmp/big.json --max-time 60 >> /tmp/igw_results.txt &
 done
 wait
-
-# Check results
-EXPECTED=51200
-ok=0; trunc=0
-for i in $(seq 1 100); do
-  sz=$(wc -c < /tmp/resp_$i 2>/dev/null || echo 0)
-  if [ "$sz" -eq "$EXPECTED" ]; then ok=$((ok+1)); else trunc=$((trunc+1)); fi
-done
-echo "ok=$ok truncated=$trunc total=100"
+echo "Full (>100KB): $(awk '$2 > 100000' /tmp/igw_results.txt | wc -l)/50"
+echo "Truncated: $(awk '$2 > 0 && $2 < 100000' /tmp/igw_results.txt | wc -l)/50"
+echo "Empty: $(awk '$2 == 0' /tmp/igw_results.txt | wc -l)/50"
 ```
 
-### Switch to 1.29.1
+### Switch Istio versions
 
-Edit `manifests/repro.yaml` and change the envoy image from `proxyv2:1.28.1` to `proxyv2:1.29.1`,
-then redeploy and re-run the test.
+To test 1.29.1 (with fix) instead of 1.28.1:
 
-## Ext-Proc Server Flags
+```bash
+ISTIO_VERSION=1.29.1
+curl -L https://istio.io/downloadIstio | ISTIO_VERSION=${ISTIO_VERSION} sh -
+./istio-${ISTIO_VERSION}/bin/istioctl install \
+  --set profile=minimal \
+  --set values.pilot.env.ENABLE_GATEWAY_API_INFERENCE_EXTENSION=true \
+  --set meshConfig.enableAutoMtls=false \
+  -y
 
-The `extproc-repro` binary supports:
+# Restart gateway to pick up new proxy (may need two restarts)
+kubectl rollout restart deploy/inference-gateway-istio
+kubectl rollout status deploy/inference-gateway-istio --timeout=120s
 
-| Flag | Description |
-|------|-------------|
-| `-name` | Service name for log prefixes |
-| `-grpcport` | gRPC listen port (default `:9902`) |
-| `-body-delay` | Delay for body chunk responses (e.g., `20ms`) |
-| `-hdr-delay` | Delay for response header responses (e.g., `50ms`) |
-
-## File Layout
-
-```
-.
-├── README.md
-├── repro-extproc/
-│   ├── extproc/          # ext-proc gRPC server (Go)
-│   │   ├── main.go
-│   │   ├── go.mod
-│   │   └── Dockerfile
-│   ├── echo/             # Echo HTTP server (Go)
-│   │   ├── main.go
-│   │   ├── go.mod
-│   │   └── Dockerfile
-│   └── manifests/
-│       └── repro.yaml    # Full deployment manifest (ns, deployments, envoy config)
-├── reports/
-│   ├── 1.28.1-v2/        # Stage 1 results (bug reproduced)
-│   └── 1.29.1-v2/        # Stage 2 results (fix analysis)
-├── ISTIO-1.28.1-EXT-PROC-BUG-TRIGGER.md
-├── ISTIO-1.29.1-EXT-PROC-BUG-TRIGGER.md
-└── validate_istio_extproc_bug.sh
+# Verify version changed
+kubectl exec deploy/inference-gateway-istio -c istio-proxy -- /usr/local/bin/envoy --version
 ```
 
-## Upstream History
+## Results
 
-| Date | Event |
-|------|-------|
-| 2025-10-28 | [envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654) opened — ext_proc FULL_DUPLEX_STREAMED body truncated with multiple filters |
-| 2026-01-09 | [gateway-api-inference-extension#2115](https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/2115) opened — BBR + EPP fails with long request body |
-| 2026-01-10 | @yanjunxiang-google estimates ~2 weeks for fix |
-| 2026-01-22 | [envoyproxy/envoy#43042](https://github.com/envoyproxy/envoy/pull/43042) — 1st fix attempt (superseded) |
-| 2026-01-22 | [envoyproxy/envoy#43122](https://github.com/envoyproxy/envoy/pull/43122) — test stub PR (still open) |
-| 2026-01-27 | [envoyproxy/envoy#43175](https://github.com/envoyproxy/envoy/pull/43175) — 2nd fix attempt, updates `observed_encode_end_stream_` during `injectDataToFilterChain` |
-| 2026-02-13 | PR #43175 merged to Envoy main |
-| 2026-02-20 | [envoyproxy/envoy#43572](https://github.com/envoyproxy/envoy/pull/43572) — backport to Envoy release/v1.37 branch |
-| 2026-02-23 | [istio/proxy#6843](https://github.com/istio/proxy/pull/6843) — Istio release-1.29 branch picks up Envoy commit `f8e895d3` (includes fix) |
-| 2026-03-06 | Istio 1.29.1 released with the fix |
-| 2026-03-12 | @nirrozenbaum asks @zetxqx to validate fix on 1.29.1 in [#2115](https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/2115) |
-| 2026-03-16 | This repo: bug reproduced on 1.28.1; fix confirmed present in 1.29.1 source but Variant 2 timing still triggers truncation |
+| | Istio 1.28.1 (Envoy 1.36.3-dev) | Istio 1.29.1 (Envoy 1.37.1-dev) |
+|---|---|---|
+| Full responses (>100KB) | 18/100 | 11/100 |
+| Truncated (1-100KB) | 73/100 | 66/100 |
+| Empty (0 bytes) | 9/100 | 23/100 |
+| **Total failures** | **82%** | **89%** |
 
-### Key upstream discussion
+Configuration: BBR `main` + EPP `v1.4.0-rc.2` + vLLM sim `v0.7.1`, 8KB request body,
+`stream:true`, 100 concurrent requests.
 
-In [envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654), @wbpcode described
-the fundamental issue:
+## Why the fix doesn't work here
 
-> *"When a filter continue the processing of filter chain, we use the per filter end_stream flag
-> to determine whether the request is end stream rather than use the stream level flag. Then this
-> problem should be resolved."*
+PR [#43175](https://github.com/envoyproxy/envoy/pull/43175) updates `observed_decode_end_stream_`
+during `injectDecodedDataToFilterChain()`. This works when the body inject happens **before** the
+second filter resumes. The upstream integration test validates exactly that ordering.
 
-He proposed refactoring `commonContinue()` to use per-filter state rather than the shared
-`observed_encode_end_stream_` / `observed_decode_end_stream_` flags. This would fix both timing
-variants. However, @yanjunxiang-google implemented the narrower ext_proc-scoped fix (PR #43175)
-instead, which only addresses Variant 1.
+But BBR + EPP both use `FULL_DUPLEX_STREAMED`. Both filters process the same data concurrently.
+Whether BBR's inject or EPP's `commonContinue()` fires first is a race — determined by gRPC
+response timing, event loop scheduling, and system load. The fix helps when BBR wins the race.
+It doesn't help when EPP wins.
 
-The original issue #41654 was **auto-closed by stalebot**, then the fix was developed after
-@yanjunxiang-google reopened work on it.
+[@wbpcode](https://github.com/wbpcode) (Envoy maintainer) identified the deeper issue in
+[envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654): `commonContinue()` uses
+a stream-level `observedEndStream()` flag instead of per-filter state. He proposed refactoring to
+per-filter end_stream tracking but cautioned *"we need to evaluate the side effect very carefully
+because the state machine of filter chain is very very complex."* No code was written for this
+proposal.
 
 ## References
 
 - [envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654) — Original bug report
-- [envoyproxy/envoy#43175](https://github.com/envoyproxy/envoy/pull/43175) — Fix (2nd attempt)
+- [envoyproxy/envoy#43175](https://github.com/envoyproxy/envoy/pull/43175) — Fix (covers partial timing only)
 - [gateway-api-inference-extension#2115](https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/2115) — IGW tracking issue
-- [istio/proxy#6843](https://github.com/istio/proxy/pull/6843) — Envoy dependency update in Istio 1.29 branch
+- [istio/proxy#6843](https://github.com/istio/proxy/pull/6843) — Envoy dependency update in Istio 1.29

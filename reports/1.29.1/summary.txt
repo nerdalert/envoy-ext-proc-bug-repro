@@ -1,1 +1,0 @@
-http200=100 bad=0 truncated=34 total=100

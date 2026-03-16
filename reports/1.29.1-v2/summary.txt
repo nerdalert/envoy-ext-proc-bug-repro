@@ -1,8 +1,0 @@
-http200=100 truncated=21 error=0 total=100
-Config: body-delay=20ms on body-processing extproc, no delay on header-only extproc
-Truncated sizes: 3966(x19) 47406 3966
-
-ANALYSIS: The fix (envoyproxy/envoy#43175) IS in the 1.29.1 build
-but only addresses the timing variant where body injects happen
-BEFORE the header-only filter resumes. Our reproducer triggers the
-variant where the header-only filter resumes BEFORE any body inject.

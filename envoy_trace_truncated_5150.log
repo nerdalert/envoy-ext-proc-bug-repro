@@ -1,0 +1,528 @@
+2026-03-19T01:14:29.408929Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:762	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Opening gRPC stream to external processor	thread=28
+2026-03-19T01:14:29.409235Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.409252Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1136	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Filter protocol configurations encoded goo.gle/debugonly  
+request_body_mode: FULL_DUPLEX_STREAMED
+response_body_mode: FULL_DUPLEX_STREAMED
+	thread=28
+2026-03-19T01:14:29.409256Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.409260Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:887	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending headers message	thread=28
+2026-03-19T01:14:29.409288Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1401	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending a body chunk of 8150 bytes, end_stream false	thread=28
+2026-03-19T01:14:29.409293Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.409295Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.409304Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1401	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending a body chunk of 0 bytes, end_stream true	thread=28
+2026-03-19T01:14:29.409307Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.409309Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.411105Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received request headers response goo.gle/debugonly  
+request_headers {
+  response {
+    header_mutation {
+      set_headers {
+        header {
+          key: "x-gateway-destination-endpoint"
+          raw_value: "10.244.0.9:8000"
+        }
+      }
+      set_headers {
+        header {
+          key: "Content-Length"
+          raw_value: "8150"
+        }
+      }
+      set_headers {
+        header {
+          key: ":authority"
+          raw_value: "172.18.0.2:32300"
+        }
+      }
+      set_headers {
+        header {
+          key: "user-agent"
+          raw_value: "curl/8.5.0"
+        }
+      }
+      set_headers {
+        header {
+          key: "accept"
+          raw_value: "*/*"
+        }
+      }
+      set_headers {
+        header {
+          key: "content-type"
+          raw_value: "application/json"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-forwarded-for"
+          raw_value: "10.244.0.1"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-external-address"
+          raw_value: "10.244.0.1"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-decorator-operation"
+          raw_value: "vllm-llama3-8b-instruct-ip-fdbc911c.default.svc.cluster.local:54321/*"
+        }
+      }
+      set_headers {
+        header {
+          key: ":path"
+          raw_value: "/v1/chat/completions"
+        }
+      }
+      set_headers {
+        header {
+          key: ":method"
+          raw_value: "POST"
+        }
+      }
+      set_headers {
+        header {
+          key: ":scheme"
+          raw_value: "http"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-forwarded-proto"
+          raw_value: "http"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-request-id"
+          raw_value: "18a9684a-9249-4595-8c2c-c8012131dcd5"
+        }
+      }
+    }
+    clear_route_cache: true
+  }
+}
+dynamic_metadata {
+  fields {
+    key: "envoy.lb"
+    value {
+      struct_value {
+        fields {
+          key: "x-gateway-destination-endpoint"
+          value {
+            string_value: "10.244.0.9:8000"
+          }
+        }
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.411120Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1618	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] processing response included dynamic metadata, but no receiving namespaces are configured.	thread=28
+2026-03-19T01:14:29.411123Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:170	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] applying headers response. body mode = FULL_DUPLEX_STREAMED	thread=28
+2026-03-19T01:14:29.411126Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:128	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Applying header mutations	thread=28
+2026-03-19T01:14:29.411137Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header :authority may not be modified per rules	thread=28
+2026-03-19T01:14:29.411144Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-external-address may not be modified per rules	thread=28
+2026-03-19T01:14:29.411146Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-decorator-operation may not be modified per rules	thread=28
+2026-03-19T01:14:29.411149Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header :method may not be modified per rules	thread=28
+2026-03-19T01:14:29.411151Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header :scheme may not be modified per rules	thread=28
+2026-03-19T01:14:29.411156Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:771	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Clearing route cache due to the filter RouterCacheAction is configured with DEFAULT and response has clear_route_cache set.	thread=28
+2026-03-19T01:14:29.411161Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 3	thread=28
+2026-03-19T01:14:29.411202Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received request body response goo.gle/debugonly  
+request_body {
+  response {
+    body_mutation {
+      streamed_response {
+        body: "{\"max_tokens\":500,\"messages\":[{\"content\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"role\":\"system\"},{\"content\":\"Hi\",\"role\":\"user\"}],\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"stream\":true}"
+        end_of_stream: true
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.411208Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:341	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Processing body response	thread=28
+2026-03-19T01:14:29.411213Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:416	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 	thread=28
+2026-03-19T01:14:29.411238Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:762	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Opening gRPC stream to external processor	thread=28
+2026-03-19T01:14:29.411317Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.411323Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1136	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Filter protocol configurations encoded goo.gle/debugonly  
+request_body_mode: FULL_DUPLEX_STREAMED
+response_body_mode: FULL_DUPLEX_STREAMED
+	thread=28
+2026-03-19T01:14:29.411326Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.411329Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:887	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending headers message	thread=28
+2026-03-19T01:14:29.411342Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1401	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending a body chunk of 8150 bytes, end_stream true	thread=28
+2026-03-19T01:14:29.411347Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.411349Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.411355Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 0	thread=28
+2026-03-19T01:14:29.411359Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:589	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Continuing processing	thread=28
+2026-03-19T01:14:29.412985Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received request headers response goo.gle/debugonly  
+request_headers {
+  response {
+    header_mutation {
+      set_headers {
+        header {
+          key: "x-gateway-destination-endpoint"
+          raw_value: "10.244.0.9:8000"
+        }
+      }
+      set_headers {
+        header {
+          key: "Content-Length"
+          raw_value: "8150"
+        }
+      }
+      set_headers {
+        header {
+          key: ":path"
+          raw_value: "/v1/chat/completions"
+        }
+      }
+      set_headers {
+        header {
+          key: "accept"
+          raw_value: "*/*"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-forwarded-proto"
+          raw_value: "http"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-peer-metadata-id"
+          raw_value: "router~10.244.0.16~inference-gateway-istio-6b4dfdff8c-q9nqd.default~default.svc.cluster.local"
+        }
+      }
+      set_headers {
+        header {
+          key: ":authority"
+          raw_value: "172.18.0.2:32300"
+        }
+      }
+      set_headers {
+        header {
+          key: ":scheme"
+          raw_value: "http"
+        }
+      }
+      set_headers {
+        header {
+          key: "content-type"
+          raw_value: "application/json"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-external-address"
+          raw_value: "10.244.0.1"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-peer-metadata"
+          raw_value: "ChoKCkNMVVNURVJfSUQSDBoKS3ViZXJuZXRlcwp7CgZMQUJFTFMScSpvCjwKH3NlcnZpY2UuaXN0aW8uaW8vY2Fub25pY2FsLW5hbWUSGRoXaW5mZXJlbmNlLWdhdGV3YXktaXN0aW8KLwojc2VydmljZS5pc3Rpby5pby9jYW5vbmljYWwtcmV2aXNpb24SCBoGbGF0ZXN0CjIKBE5BTUUSKhooaW5mZXJlbmNlLWdhdGV3YXktaXN0aW8tNmI0ZGZkZmY4Yy1xOW5xZAoWCglOQU1FU1BBQ0USCRoHZGVmYXVsdApbCgVPV05FUhJSGlBrdWJlcm5ldGVzOi8vYXBpcy9hcHBzL3YxL25hbWVzcGFjZXMvZGVmYXVsdC9kZXBsb3ltZW50cy9pbmZlcmVuY2UtZ2F0ZXdheS1pc3RpbwoqCg1XT1JLTE9BRF9OQU1FEhkaF2luZmVyZW5jZS1nYXRld2F5LWlzdGlv"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-decorator-operation"
+          raw_value: "vllm-llama3-8b-instruct-ip-fdbc911c.default.svc.cluster.local:54321/*"
+        }
+      }
+      set_headers {
+        header {
+          key: "user-agent"
+          raw_value: "curl/8.5.0"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-forwarded-for"
+          raw_value: "10.244.0.1"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-request-id"
+          raw_value: "18a9684a-9249-4595-8c2c-c8012131dcd5"
+        }
+      }
+      set_headers {
+        header {
+          key: ":method"
+          raw_value: "POST"
+        }
+      }
+    }
+    clear_route_cache: true
+  }
+}
+dynamic_metadata {
+  fields {
+    key: "envoy.lb"
+    value {
+      struct_value {
+        fields {
+          key: "x-gateway-destination-endpoint"
+          value {
+            string_value: "10.244.0.9:8000"
+          }
+        }
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.413007Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:170	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] applying headers response. body mode = FULL_DUPLEX_STREAMED	thread=28
+2026-03-19T01:14:29.413010Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:128	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Applying header mutations	thread=28
+2026-03-19T01:14:29.413019Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-peer-metadata-id may not be modified per rules	thread=28
+2026-03-19T01:14:29.413022Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header :authority may not be modified per rules	thread=28
+2026-03-19T01:14:29.413024Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header :scheme may not be modified per rules	thread=28
+2026-03-19T01:14:29.413027Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-external-address may not be modified per rules	thread=28
+2026-03-19T01:14:29.413029Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-peer-metadata may not be modified per rules	thread=28
+2026-03-19T01:14:29.413032Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-decorator-operation may not be modified per rules	thread=28
+2026-03-19T01:14:29.413036Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header :method may not be modified per rules	thread=28
+2026-03-19T01:14:29.413039Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:771	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Clearing route cache due to the filter RouterCacheAction is configured with DEFAULT and response has clear_route_cache set.	thread=28
+2026-03-19T01:14:29.413043Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 3	thread=28
+2026-03-19T01:14:29.413092Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received request body response goo.gle/debugonly  
+request_body {
+  response {
+    body_mutation {
+      streamed_response {
+        body: "{\"max_tokens\":500,\"messages\":[{\"content\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"role\":\"system\"},{\"content\":\"Hi\",\"role\":\"user\"}],\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"stream\":true}"
+        end_of_stream: true
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.413104Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:341	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Processing body response	thread=28
+2026-03-19T01:14:29.413106Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:416	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 	thread=28
+2026-03-19T01:14:29.413282Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 0	thread=28
+2026-03-19T01:14:29.413289Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:589	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Continuing processing	thread=28
+2026-03-19T01:14:29.414763Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.414779Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.414783Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:887	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending headers message	thread=28
+2026-03-19T01:14:29.414810Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1401	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending a body chunk of 5150 bytes, end_stream false	thread=28
+2026-03-19T01:14:29.414815Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.414817Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.414835Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1401	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending a body chunk of 0 bytes, end_stream true	thread=28
+2026-03-19T01:14:29.414839Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.414841Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.415083Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received response headers response goo.gle/debugonly  
+response_headers {
+  response {
+    header_mutation {
+      set_headers {
+        header {
+          key: "x-went-into-resp-headers"
+          raw_value: "true"
+        }
+      }
+      set_headers {
+        header {
+          key: ":status"
+          raw_value: "200"
+        }
+      }
+      set_headers {
+        header {
+          key: "server"
+          raw_value: "fasthttp"
+        }
+      }
+      set_headers {
+        header {
+          key: "date"
+          raw_value: "Thu, 19 Mar 2026 01:14:28 GMT"
+        }
+      }
+      set_headers {
+        header {
+          key: "content-type"
+          raw_value: "text/event-stream"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-inference-pod"
+          raw_value: "vllm-llama3-8b-instruct-75548bc58d-gp6wf"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-inference-port"
+          raw_value: "8000"
+        }
+      }
+      set_headers {
+        header {
+          key: "transfer-encoding"
+          raw_value: "chunked"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-upstream-service-time"
+          raw_value: "1"
+        }
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.415089Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:170	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] applying headers response. body mode = FULL_DUPLEX_STREAMED	thread=28
+2026-03-19T01:14:29.415092Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:128	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Applying header mutations	thread=28
+2026-03-19T01:14:29.415105Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-upstream-service-time may not be modified per rules	thread=28
+2026-03-19T01:14:29.415109Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 3	thread=28
+2026-03-19T01:14:29.415274Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received response body response goo.gle/debugonly  
+response_body {
+  response {
+    body_mutation {
+      streamed_response {
+        body: "data: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"role\":\"assistant\",\"content\":\"\"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"Give \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"man \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"fish \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"and \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"you \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"feed \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"him \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"for \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"day\"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"; \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"teach \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"man \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"to \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"delta\":{\"content\":\"\"}}]}\n\ndata: [DONE]\n\n"
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.415311Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:341	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Processing body response	thread=28
+2026-03-19T01:14:29.415315Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:416	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 	thread=28
+2026-03-19T01:14:29.415328Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.415331Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.415335Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:887	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending headers message	thread=28
+2026-03-19T01:14:29.415349Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1401	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending a body chunk of 5150 bytes, end_stream false	thread=28
+2026-03-19T01:14:29.415358Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.415360Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.415366Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 3	thread=28
+2026-03-19T01:14:29.415381Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received response body response goo.gle/debugonly  
+response_body {
+  response {
+    body_mutation {
+      streamed_response {
+        end_of_stream: true
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.415388Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:341	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Processing body response	thread=28
+2026-03-19T01:14:29.415391Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:416	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 	thread=28
+2026-03-19T01:14:29.415394Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1401	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Sending a body chunk of 0 bytes, end_stream true	thread=28
+2026-03-19T01:14:29.415397Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1127	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Trying to encode filter protocol configurations	thread=28
+2026-03-19T01:14:29.415399Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:27	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Start external processing call	thread=28
+2026-03-19T01:14:29.415404Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 0	thread=28
+2026-03-19T01:14:29.415412Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:589	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Continuing processing	thread=28
+2026-03-19T01:14:29.415416Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1769	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Closing gRPC stream after receiving last response	thread=28
+2026-03-19T01:14:29.415419Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:795	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Calling close on stream	thread=28
+2026-03-19T01:14:29.415421Z	debug	envoy ext_proc external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135	Closing gRPC stream	thread=28
+2026-03-19T01:14:29.415673Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received response headers response goo.gle/debugonly  
+response_headers {
+  response {
+    header_mutation {
+      set_headers {
+        header {
+          key: "x-went-into-resp-headers"
+          raw_value: "true"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-inference-pod"
+          raw_value: "vllm-llama3-8b-instruct-75548bc58d-gp6wf"
+        }
+      }
+      set_headers {
+        header {
+          key: "transfer-encoding"
+          raw_value: "chunked"
+        }
+      }
+      set_headers {
+        header {
+          key: ":status"
+          raw_value: "200"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-envoy-upstream-service-time"
+          raw_value: "1"
+        }
+      }
+      set_headers {
+        header {
+          key: "server"
+          raw_value: "fasthttp"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-inference-port"
+          raw_value: "8000"
+        }
+      }
+      set_headers {
+        header {
+          key: "x-went-into-resp-headers"
+          raw_value: "true"
+        }
+      }
+      set_headers {
+        header {
+          key: "date"
+          raw_value: "Thu, 19 Mar 2026 01:14:28 GMT"
+        }
+      }
+      set_headers {
+        header {
+          key: "content-type"
+          raw_value: "text/event-stream"
+        }
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.415686Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:170	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] applying headers response. body mode = FULL_DUPLEX_STREAMED	thread=28
+2026-03-19T01:14:29.415689Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:128	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Applying header mutations	thread=28
+2026-03-19T01:14:29.415697Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/mutation_utils.cc:242	Header x-envoy-upstream-service-time may not be modified per rules	thread=28
+2026-03-19T01:14:29.415703Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 3	thread=28
+2026-03-19T01:14:29.415772Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received response body response goo.gle/debugonly  
+response_body {
+  response {
+    body_mutation {
+      streamed_response {
+        body: "data: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"role\":\"assistant\",\"content\":\"\"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"Give \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"man \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"fish \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"and \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"you \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"feed \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"him \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"for \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"day\"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"; \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"teach \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"a \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"man \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":null,\"delta\":{\"content\":\"to \"}}]}\n\ndata: {\"id\":\"chatcmpl-48ab5d95-2c85-5d68-bf6e-a69fd29d05d9\",\"created\":1773882869,\"model\":\"meta-llama/Llama-3.1-8B-Instruct\",\"usage\":null,\"object\":\"chat.completion.chunk\",\"kv_transfer_params\":null,\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"delta\":{\"content\":\"\"}}]}\n\ndata: [DONE]\n\n"
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.415785Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:341	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Processing body response	thread=28
+2026-03-19T01:14:29.415788Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:416	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 	thread=28
+2026-03-19T01:14:29.415808Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 3	thread=28
+2026-03-19T01:14:29.415818Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1824	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Received response body response goo.gle/debugonly  
+response_body {
+  response {
+    body_mutation {
+      streamed_response {
+        end_of_stream: true
+      }
+    }
+  }
+}
+	thread=28
+2026-03-19T01:14:29.415825Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:341	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Processing body response	thread=28
+2026-03-19T01:14:29.415828Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:416	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 	thread=28
+2026-03-19T01:14:29.415870Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:839	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] onDestroy	thread=28
+2026-03-19T01:14:29.415877Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:795	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Calling close on stream	thread=28
+2026-03-19T01:14:29.415879Z	debug	envoy ext_proc external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135	Closing gRPC stream	thread=28
+2026-03-19T01:14:29.415895Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:839	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] onDestroy	thread=28
+2026-03-19T01:14:29.415902Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:802	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Stream already closed	thread=28
+2026-03-19T01:14:29.415907Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:47	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Finish external processing call. Next state: 0	thread=28
+2026-03-19T01:14:29.415911Z	debug	envoy ext_proc external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:589	[Tags: "ConnectionId":"14208","StreamId":"12167382873206692682"] Continuing processing	thread=28

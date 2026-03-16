@@ -1,4 +1,0 @@
-http200=100 truncated=24 error=1 total=100
-Truncated sizes: 47406 3966(x21) 18446
-extproc2 send errors: 100
-Stage 1: BUG REPRODUCED on Istio 1.28.1 (Envoy 1.36.3-dev)
