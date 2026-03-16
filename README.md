@@ -48,10 +48,16 @@ for details.
 
 ## Timing Variants
 
-The root cause is in `commonContinue()` at `filter_manager.cc:132`:
+The root cause is in `commonContinue()` at `filter_manager.cc:109,132`:
 
 ```cpp
-doData(observedEndStream() && !had_trailers_before_data);
+// line 109 — headers path
+doHeaders(observedEndStream() && !bufferedData() && !hasTrailers());
+
+// line 132 — data path
+if (bufferedData()) {
+    doData(observedEndStream() && !had_trailers_before_data);
+}
 ```
 
 There are two timing variants of this race:
@@ -63,6 +69,48 @@ There are two timing variants of this race:
 
 The upstream integration test (`TwoExtProcFiltersInResponseProcessing`) validates Variant 1.
 Our reproducer with `body-delay=20ms` triggers Variant 2.
+
+### Variant 1: Body injects first (fix works)
+
+```
+t=0   Backend response arrives, observedEndStream=true
+t=1   Filter-1 sends body chunks to extproc2
+t=2   extproc2 responds -> Filter-1 injects data with end_stream=false
+      ^^^ FIX: observed_encode_end_stream_ updated to FALSE
+t=3   More body injects (end_stream=false)...
+t=4   extproc1 responds -> Filter-0 calls commonContinue()
+      observedEndStream() returns FALSE (updated by fix at t=2)
+      doData(false) -> partial body sent WITHOUT eos -> correct, stream stays open
+t=5   Last body inject (end_stream=true) -> rest of body arrives -> complete response
+```
+
+### Variant 2: Header-only filter resumes first (fix does not help)
+
+```
+t=0   Backend response arrives, observedEndStream=true
+t=1   Filter-1 sends body chunks to extproc2 (slow, e.g. 20ms delay each)
+t=2   extproc1 responds -> Filter-0 calls commonContinue()
+      ^^^ No body inject has happened yet! Fix never fired.
+      observedEndStream() returns TRUE (stale, never updated)
+      doHeaders(true) or doData(true) -> eos=true sent downstream -> TRUNCATION
+t=3   extproc2 finally responds -> body inject attempted
+      But downstream stream already closed -> "context canceled" errors
+```
+
+### Why Variant 2 remains unfixed
+
+[@wbpcode](https://github.com/wbpcode) (Envoy maintainer) identified the deeper root cause in
+[envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654#issuecomment-2604889989):
+`commonContinue()` uses a **stream-level** `observedEndStream()` flag, but the correct behavior
+requires a **per-filter** end-stream flag. He proposed a two-step refactor:
+
+1. When a filter resumes, use a per-filter end_stream flag instead of the stream-level flag (fixes both variants)
+2. Per-filter body buffers (larger refactor, not strictly needed for this bug)
+
+Instead, PR [#43175](https://github.com/envoyproxy/envoy/pull/43175) took a narrower approach:
+update the stream-level flag during `injectDataToFilterChain`. This fixes Variant 1 but leaves
+Variant 2 unaddressed. The broader per-filter refactor was **never implemented** and there is
+no open PR or issue tracking it.
 
 ## Reproducer Architecture
 
@@ -193,6 +241,40 @@ The `extproc-repro` binary supports:
 ├── ISTIO-1.29.1-EXT-PROC-BUG-TRIGGER.md
 └── validate_istio_extproc_bug.sh
 ```
+
+## Upstream History
+
+| Date | Event |
+|------|-------|
+| 2025-10-28 | [envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654) opened — ext_proc FULL_DUPLEX_STREAMED body truncated with multiple filters |
+| 2026-01-09 | [gateway-api-inference-extension#2115](https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/2115) opened — BBR + EPP fails with long request body |
+| 2026-01-10 | @yanjunxiang-google estimates ~2 weeks for fix |
+| 2026-01-22 | [envoyproxy/envoy#43042](https://github.com/envoyproxy/envoy/pull/43042) — 1st fix attempt (superseded) |
+| 2026-01-22 | [envoyproxy/envoy#43122](https://github.com/envoyproxy/envoy/pull/43122) — test stub PR (still open) |
+| 2026-01-27 | [envoyproxy/envoy#43175](https://github.com/envoyproxy/envoy/pull/43175) — 2nd fix attempt, updates `observed_encode_end_stream_` during `injectDataToFilterChain` |
+| 2026-02-13 | PR #43175 merged to Envoy main |
+| 2026-02-20 | [envoyproxy/envoy#43572](https://github.com/envoyproxy/envoy/pull/43572) — backport to Envoy release/v1.37 branch |
+| 2026-02-23 | [istio/proxy#6843](https://github.com/istio/proxy/pull/6843) — Istio release-1.29 branch picks up Envoy commit `f8e895d3` (includes fix) |
+| 2026-03-06 | Istio 1.29.1 released with the fix |
+| 2026-03-12 | @nirrozenbaum asks @zetxqx to validate fix on 1.29.1 in [#2115](https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/2115) |
+| 2026-03-16 | This repo: bug reproduced on 1.28.1; fix confirmed present in 1.29.1 source but Variant 2 timing still triggers truncation |
+
+### Key upstream discussion
+
+In [envoyproxy/envoy#41654](https://github.com/envoyproxy/envoy/issues/41654), @wbpcode described
+the fundamental issue:
+
+> *"When a filter continue the processing of filter chain, we use the per filter end_stream flag
+> to determine whether the request is end stream rather than use the stream level flag. Then this
+> problem should be resolved."*
+
+He proposed refactoring `commonContinue()` to use per-filter state rather than the shared
+`observed_encode_end_stream_` / `observed_decode_end_stream_` flags. This would fix both timing
+variants. However, @yanjunxiang-google implemented the narrower ext_proc-scoped fix (PR #43175)
+instead, which only addresses Variant 1.
+
+The original issue #41654 was **auto-closed by stalebot**, then the fix was developed after
+@yanjunxiang-google reopened work on it.
 
 ## References
 
