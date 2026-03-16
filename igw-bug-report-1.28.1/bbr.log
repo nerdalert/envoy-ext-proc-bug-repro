@@ -1,0 +1,24 @@
+{"level":"info","ts":"2026-03-16T03:54:04Z","logger":"setup","caller":"runner/runner.go:92","msg":"BBR build","commit-sha":"unknown","build-ref":""}
+{"level":"info","ts":"2026-03-16T03:54:04Z","logger":"setup","caller":"runner/runner.go:120","msg":"Flags processed","flags":{"enable-pprof":true,"grpc-health-port":9005,"grpc-port":9004,"metrics-endpoint-auth":true,"metrics-port":9090,"plugin":null,"secure-serving":true,"streaming":true,"tracing":false,"v":3,"zap-devel":{},"zap-encoder":{},"zap-log-level":{},"zap-stacktrace-level":{},"zap-time-encoding":{}}}
+{"level":"info","ts":"2026-03-16T03:54:04Z","logger":"setup","caller":"runner/runner.go:175","msg":"Setting pprof handlers"}
+{"level":"Level(-2)","ts":"2026-03-16T03:54:04Z","caller":"manager/internal.go:201","msg":"Registering metrics http server extra handler","path":"/debug/pprof/heap"}
+{"level":"Level(-2)","ts":"2026-03-16T03:54:04Z","caller":"manager/internal.go:201","msg":"Registering metrics http server extra handler","path":"/debug/pprof/goroutine"}
+{"level":"Level(-2)","ts":"2026-03-16T03:54:04Z","caller":"manager/internal.go:201","msg":"Registering metrics http server extra handler","path":"/debug/pprof/allocs"}
+{"level":"Level(-2)","ts":"2026-03-16T03:54:04Z","caller":"manager/internal.go:201","msg":"Registering metrics http server extra handler","path":"/debug/pprof/threadcreate"}
+{"level":"Level(-2)","ts":"2026-03-16T03:54:04Z","caller":"manager/internal.go:201","msg":"Registering metrics http server extra handler","path":"/debug/pprof/block"}
+{"level":"Level(-2)","ts":"2026-03-16T03:54:04Z","caller":"manager/internal.go:201","msg":"Registering metrics http server extra handler","path":"/debug/pprof/mutex"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","logger":"setup","caller":"runner/runner.go:187","msg":"No BBR plugins are specified. Running BBR with the default behavior."}
+{"level":"info","ts":"2026-03-16T03:54:04Z","logger":"setup","caller":"runner/runner.go:249","msg":"Manager starting"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","logger":"controller-runtime.metrics","caller":"server/server.go:208","msg":"Starting metrics server"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"runnable/grpc.go:35","msg":"gRPC server starting","name":"health"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"controller/controller.go:370","msg":"Starting EventSource","controller":"configmap","controllerGroup":"","controllerKind":"ConfigMap","source":"kind source: *v1.ConfigMap"}
+{"level":"Level(-3)","ts":"2026-03-16T03:54:04Z","logger":"controller-runtime.cache","caller":"cache/reflector.go:367","msg":"Starting reflector","type":"*v1.ConfigMap","resyncPeriod":34333.721060772,"reflector":"pkg/mod/k8s.io/client-go@v0.35.2/tools/cache/reflector.go:289"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","logger":"controller-runtime.metrics","caller":"server/server.go:247","msg":"Serving metrics server","bindAddress":":9090","secure":false}
+{"level":"Level(-3)","ts":"2026-03-16T03:54:04Z","logger":"controller-runtime.cache","caller":"cache/reflector.go:411","msg":"Listing and watching","type":"*v1.ConfigMap","reflector":"pkg/mod/k8s.io/client-go@v0.35.2/tools/cache/reflector.go:289"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"runnable/grpc.go:43","msg":"gRPC server listening","name":"health","port":9005}
+{"level":"Level(-2)","ts":"2026-03-16T03:54:04Z","logger":"controller-runtime.cache","caller":"cache/reflector.go:446","msg":"Caches populated","type":"*v1.ConfigMap","reflector":"pkg/mod/k8s.io/client-go@v0.35.2/tools/cache/reflector.go:289"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"controller/controller.go:303","msg":"Starting Controller","controller":"configmap","controllerGroup":"","controllerKind":"ConfigMap"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"controller/controller.go:306","msg":"Starting workers","controller":"configmap","controllerGroup":"","controllerKind":"ConfigMap","worker count":1}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"basemodelextractor/configmap_reconciler.go:37","msg":"Reconciling ConfigMap","controller":"configmap","controllerGroup":"","controllerKind":"ConfigMap","ConfigMap":{"name":"vllm-llama3-8b-instruct-adapters-allowlist","namespace":"default"},"namespace":"default","name":"vllm-llama3-8b-instruct-adapters-allowlist","reconcileID":"598787b7-c7ca-4712-98da-863fe0ef2932"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"runnable/grpc.go:35","msg":"gRPC server starting","name":"ext-proc"}
+{"level":"info","ts":"2026-03-16T03:54:04Z","caller":"runnable/grpc.go:43","msg":"gRPC server listening","name":"ext-proc","port":9004}

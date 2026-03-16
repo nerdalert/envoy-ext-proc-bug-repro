@@ -1,0 +1,400 @@
+[2026-03-16 04:31:57.636][21][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"10"] destroying stream: 1 active remaining, readyForStream true, currentUnusedCapacity 1023
+[2026-03-16 04:31:57.636][21][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.636][21][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.636][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"10"] sent reset code=0
+[2026-03-16 04:31:57.636][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"10"] stream 89 closed: 0
+[2026-03-16 04:31:57.636][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"10"] Recouping 0 bytes of flow control window for stream 89.
+[2026-03-16 04:31:57.636][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"10"] sent reset code=0
+[2026-03-16 04:31:57.636][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"10"] stream 77 closed: 0
+[2026-03-16 04:31:57.636][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"10"] Recouping 0 bytes of flow control window for stream 77.
+[2026-03-16 04:31:57.636][21][debug][connection] [external/envoy/source/common/network/connection_impl.cc:777] [Tags: "ConnectionId":"119"] remote close
+[2026-03-16 04:31:57.636][21][debug][connection] [external/envoy/source/common/network/connection_impl.cc:317] [Tags: "ConnectionId":"119"] closing socket: 0
+[2026-03-16 04:31:57.636][21][debug][conn_handler] [external/envoy/source/common/listener_manager/active_stream_listener_base.cc:124] [Tags: "ConnectionId":"119"] adding to cleanup list
+[2026-03-16 04:31:57.636][21][debug][connection] [external/envoy/source/common/network/connection_impl.cc:152] [Tags: "ConnectionId":"119"] Not closing conn, socket is not open
+[2026-03-16 04:31:57.637][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 41, end_stream: false
+[2026-03-16 04:31:57.637][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 41, end_stream: false
+[2026-03-16 04:31:57.637][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 41, end_stream: false
+[2026-03-16 04:31:57.637][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 2073, stream_id: 41, end_stream: false
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Received response body response
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:320] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Processing body response
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:389] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:630] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Opening gRPC stream to external processor
+[2026-03-16 04:31:57.637][32][debug][router] [external/envoy/source/common/router/router.cc:537] [Tags: "ConnectionId":"0","StreamId":"14519106393543481264"] cluster 'ext_proc_cluster' match for URL '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+[2026-03-16 04:31:57.637][32][debug][router] [external/envoy/source/common/router/router.cc:809] [Tags: "ConnectionId":"0","StreamId":"14519106393543481264"] router decoding headers:
+':method', 'POST'
+':path', '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+':authority', 'ext_proc_cluster'
+':scheme', 'http'
+'te', 'trailers'
+'content-type', 'application/grpc'
+'x-envoy-internal', 'true'
+'x-forwarded-for', '10.244.0.13'
+
+[2026-03-16 04:31:57.637][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:330] [Tags: "ConnectionId":"39"] using existing fully connected connection
+[2026-03-16 04:31:57.637][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:247] [Tags: "ConnectionId":"39"] creating stream
+[2026-03-16 04:31:57.637][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:599] [Tags: "ConnectionId":"0","StreamId":"14519106393543481264"] pool ready
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:995] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Trying to encode filter protocol configurations
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1004] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Filter protocol configurations encoded 
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:23] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Start external processing call
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:33] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Traffic direction OUTBOUND: 300000 ms timer enabled
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:750] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Sending headers message
+[2026-03-16 04:31:57.637][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"14519106393543481264"] router decoding data: 178
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Finish external processing call
+[2026-03-16 04:31:57.637][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"10"] Http2Visitor: remaining data payload: 3986, stream_id: 79, end_stream: false
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Received response body response
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:320] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Processing body response
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:389] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:630] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Opening gRPC stream to external processor
+[2026-03-16 04:31:57.637][21][debug][router] [external/envoy/source/common/router/router.cc:537] [Tags: "ConnectionId":"0","StreamId":"9910280019520228258"] cluster 'ext_proc_cluster' match for URL '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+[2026-03-16 04:31:57.637][21][debug][router] [external/envoy/source/common/router/router.cc:809] [Tags: "ConnectionId":"0","StreamId":"9910280019520228258"] router decoding headers:
+':method', 'POST'
+':path', '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+':authority', 'ext_proc_cluster'
+':scheme', 'http'
+'te', 'trailers'
+'content-type', 'application/grpc'
+'x-envoy-internal', 'true'
+'x-forwarded-for', '10.244.0.13'
+
+[2026-03-16 04:31:57.637][21][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:330] [Tags: "ConnectionId":"10"] using existing fully connected connection
+[2026-03-16 04:31:57.637][21][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:247] [Tags: "ConnectionId":"10"] creating stream
+[2026-03-16 04:31:57.637][21][debug][router] [external/envoy/source/common/router/upstream_request.cc:599] [Tags: "ConnectionId":"0","StreamId":"9910280019520228258"] pool ready
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:995] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Trying to encode filter protocol configurations
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1004] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Filter protocol configurations encoded 
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:23] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Start external processing call
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:33] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Traffic direction OUTBOUND: 300000 ms timer enabled
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:750] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Sending headers message
+[2026-03-16 04:31:57.637][21][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"9910280019520228258"] router decoding data: 178
+[2026-03-16 04:31:57.637][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Finish external processing call
+[2026-03-16 04:31:57.637][32][debug][router] [external/envoy/source/common/router/router.cc:1699] [Tags: "ConnectionId":"0","StreamId":"14519106393543481264"] upstream headers complete: end_stream=false
+[2026-03-16 04:31:57.637][32][debug][http] [external/envoy/source/common/http/async_client_impl.cc:197] async http request response headers (end_stream=false):
+':status', '200'
+'content-type', 'application/grpc'
+
+[2026-03-16 04:31:57.637][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 7, stream_id: 51, end_stream: false
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Received response headers response
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:154] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] applying headers response. body mode = NONE
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Finish external processing call
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.637][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:548] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Continuing processing
+[2026-03-16 04:31:57.637][32][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:1948] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] encoding headers via codec (end_stream=false):
+':status', '200'
+'date', 'Mon, 16 Mar 2026 04:31:56 GMT'
+'content-type', 'application/octet-stream'
+'x-envoy-upstream-service-time', '0'
+'server', 'envoy'
+
+[2026-03-16 04:31:57.637][32][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:2063] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Codec completed encoding stream.
+[2026-03-16 04:31:57.638][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] onDestroy
+[2026-03-16 04:31:57.638][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.638][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Calling close on stream
+[2026-03-16 04:31:57.638][32][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.638][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"14519106393543481264"] router decoding data: 0
+[2026-03-16 04:31:57.638][32][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"39"] encode complete
+[2026-03-16 04:31:57.638][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"14519106393543481264"] resetting pool request
+[2026-03-16 04:31:57.638][32][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"39"] Request reset. Reason 0
+[2026-03-16 04:31:57.638][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"39"] destroying stream: 3 active remaining, readyForStream true, currentUnusedCapacity 1021
+[2026-03-16 04:31:57.638][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.638][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] onDestroy
+[2026-03-16 04:31:57.638][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"121","StreamId":"497347426563454872"] Calling close on stream
+[2026-03-16 04:31:57.638][32][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.638][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"8628419762315338276"] router decoding data: 0
+[2026-03-16 04:31:57.638][32][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"39"] encode complete
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/router.cc:1699] [Tags: "ConnectionId":"0","StreamId":"9910280019520228258"] upstream headers complete: end_stream=false
+[2026-03-16 04:31:57.638][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"8628419762315338276"] resetting pool request
+[2026-03-16 04:31:57.638][32][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"39"] Request reset. Reason 0
+[2026-03-16 04:31:57.638][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"39"] destroying stream: 2 active remaining, readyForStream true, currentUnusedCapacity 1022
+[2026-03-16 04:31:57.638][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.638][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.638][21][debug][http] [external/envoy/source/common/http/async_client_impl.cc:197] async http request response headers (end_stream=false):
+':status', '200'
+'content-type', 'application/grpc'
+
+[2026-03-16 04:31:57.638][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"10"] Http2Visitor: remaining data payload: 7, stream_id: 91, end_stream: false
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Received response headers response
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:154] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] applying headers response. body mode = NONE
+[2026-03-16 04:31:57.638][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"39"] sent reset code=0
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Finish external processing call
+[2026-03-16 04:31:57.638][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"39"] stream 51 closed: 0
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.638][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"39"] Recouping 0 bytes of flow control window for stream 51.
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:548] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Continuing processing
+[2026-03-16 04:31:57.638][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"39"] sent reset code=0
+[2026-03-16 04:31:57.638][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"39"] stream 41 closed: 0
+[2026-03-16 04:31:57.638][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"39"] Recouping 0 bytes of flow control window for stream 41.
+[2026-03-16 04:31:57.638][21][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:1948] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] encoding headers via codec (end_stream=false):
+':status', '200'
+'date', 'Mon, 16 Mar 2026 04:31:56 GMT'
+'content-type', 'application/octet-stream'
+'x-envoy-upstream-service-time', '1'
+'server', 'envoy'
+
+[2026-03-16 04:31:57.638][21][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:2063] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Codec completed encoding stream.
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] onDestroy
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Calling close on stream
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"9910280019520228258"] router decoding data: 0
+[2026-03-16 04:31:57.638][21][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"10"] encode complete
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"9910280019520228258"] resetting pool request
+[2026-03-16 04:31:57.638][21][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"10"] Request reset. Reason 0
+[2026-03-16 04:31:57.638][21][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"10"] destroying stream: 1 active remaining, readyForStream true, currentUnusedCapacity 1023
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] onDestroy
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"120","StreamId":"12323413924850824286"] Calling close on stream
+[2026-03-16 04:31:57.638][21][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"7500774942272561855"] router decoding data: 0
+[2026-03-16 04:31:57.638][21][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"10"] encode complete
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"7500774942272561855"] resetting pool request
+[2026-03-16 04:31:57.638][21][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"10"] Request reset. Reason 0
+[2026-03-16 04:31:57.638][21][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"10"] destroying stream: 0 active remaining, readyForStream true, currentUnusedCapacity 1024
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.638][21][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.638][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"10"] sent reset code=0
+[2026-03-16 04:31:57.638][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"10"] stream 91 closed: 0
+[2026-03-16 04:31:57.638][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"10"] Recouping 0 bytes of flow control window for stream 91.
+[2026-03-16 04:31:57.638][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"10"] sent reset code=0
+[2026-03-16 04:31:57.638][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"10"] stream 79 closed: 0
+[2026-03-16 04:31:57.638][21][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"10"] Recouping 0 bytes of flow control window for stream 79.
+[2026-03-16 04:31:57.638][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:777] [Tags: "ConnectionId":"121"] remote close
+[2026-03-16 04:31:57.638][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:317] [Tags: "ConnectionId":"121"] closing socket: 0
+[2026-03-16 04:31:57.638][21][debug][connection] [external/envoy/source/common/network/connection_impl.cc:777] [Tags: "ConnectionId":"120"] remote close
+[2026-03-16 04:31:57.638][21][debug][connection] [external/envoy/source/common/network/connection_impl.cc:317] [Tags: "ConnectionId":"120"] closing socket: 0
+[2026-03-16 04:31:57.638][21][debug][conn_handler] [external/envoy/source/common/listener_manager/active_stream_listener_base.cc:124] [Tags: "ConnectionId":"120"] adding to cleanup list
+[2026-03-16 04:31:57.638][32][debug][conn_handler] [external/envoy/source/common/listener_manager/active_stream_listener_base.cc:124] [Tags: "ConnectionId":"121"] adding to cleanup list
+[2026-03-16 04:31:57.638][21][debug][connection] [external/envoy/source/common/network/connection_impl.cc:152] [Tags: "ConnectionId":"120"] Not closing conn, socket is not open
+[2026-03-16 04:31:57.638][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:152] [Tags: "ConnectionId":"121"] Not closing conn, socket is not open
+[2026-03-16 04:31:57.638][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"40"] Http2Visitor: remaining data payload: 16384, stream_id: 31, end_stream: false
+[2026-03-16 04:31:57.638][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"40"] Http2Visitor: remaining data payload: 16384, stream_id: 31, end_stream: false
+[2026-03-16 04:31:57.638][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"40"] Http2Visitor: remaining data payload: 16384, stream_id: 31, end_stream: false
+[2026-03-16 04:31:57.638][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"40"] Http2Visitor: remaining data payload: 2073, stream_id: 31, end_stream: false
+[2026-03-16 04:31:57.638][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Received response body response
+[2026-03-16 04:31:57.638][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:320] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Processing body response
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:389] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:630] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Opening gRPC stream to external processor
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:537] [Tags: "ConnectionId":"0","StreamId":"9097673292366183207"] cluster 'ext_proc_cluster' match for URL '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:809] [Tags: "ConnectionId":"0","StreamId":"9097673292366183207"] router decoding headers:
+':method', 'POST'
+':path', '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+':authority', 'ext_proc_cluster'
+':scheme', 'http'
+'te', 'trailers'
+'content-type', 'application/grpc'
+'x-envoy-internal', 'true'
+'x-forwarded-for', '10.244.0.13'
+
+[2026-03-16 04:31:57.639][25][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:330] [Tags: "ConnectionId":"40"] using existing fully connected connection
+[2026-03-16 04:31:57.639][25][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:247] [Tags: "ConnectionId":"40"] creating stream
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/upstream_request.cc:599] [Tags: "ConnectionId":"0","StreamId":"9097673292366183207"] pool ready
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 43, end_stream: false
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 43, end_stream: false
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 43, end_stream: false
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 2073, stream_id: 43, end_stream: false
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:995] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Trying to encode filter protocol configurations
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1004] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Filter protocol configurations encoded 
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:23] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Start external processing call
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:33] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Traffic direction OUTBOUND: 300000 ms timer enabled
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:750] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Sending headers message
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"9097673292366183207"] router decoding data: 178
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Received response body response
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:320] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Processing body response
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Finish external processing call
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:389] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:630] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Opening gRPC stream to external processor
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:537] [Tags: "ConnectionId":"0","StreamId":"2328470919674658349"] cluster 'ext_proc_cluster' match for URL '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:809] [Tags: "ConnectionId":"0","StreamId":"2328470919674658349"] router decoding headers:
+':method', 'POST'
+':path', '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+':authority', 'ext_proc_cluster'
+':scheme', 'http'
+'te', 'trailers'
+'content-type', 'application/grpc'
+'x-envoy-internal', 'true'
+'x-forwarded-for', '10.244.0.13'
+
+[2026-03-16 04:31:57.639][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:330] [Tags: "ConnectionId":"39"] using existing fully connected connection
+[2026-03-16 04:31:57.639][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:247] [Tags: "ConnectionId":"39"] creating stream
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:599] [Tags: "ConnectionId":"0","StreamId":"2328470919674658349"] pool ready
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:995] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Trying to encode filter protocol configurations
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1004] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Filter protocol configurations encoded 
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:23] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Start external processing call
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:33] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Traffic direction OUTBOUND: 300000 ms timer enabled
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:750] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Sending headers message
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"2328470919674658349"] router decoding data: 178
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Finish external processing call
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:1699] [Tags: "ConnectionId":"0","StreamId":"9097673292366183207"] upstream headers complete: end_stream=false
+[2026-03-16 04:31:57.639][25][debug][http] [external/envoy/source/common/http/async_client_impl.cc:197] async http request response headers (end_stream=false):
+':status', '200'
+'content-type', 'application/grpc'
+
+[2026-03-16 04:31:57.639][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"40"] Http2Visitor: remaining data payload: 7, stream_id: 35, end_stream: false
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Received response headers response
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:154] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] applying headers response. body mode = NONE
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Finish external processing call
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:548] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Continuing processing
+[2026-03-16 04:31:57.639][25][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:1948] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] encoding headers via codec (end_stream=false):
+':status', '200'
+'date', 'Mon, 16 Mar 2026 04:31:56 GMT'
+'content-type', 'application/octet-stream'
+'x-envoy-upstream-service-time', '0'
+'server', 'envoy'
+
+[2026-03-16 04:31:57.639][25][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:2063] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Codec completed encoding stream.
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] onDestroy
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Calling close on stream
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"9097673292366183207"] router decoding data: 0
+[2026-03-16 04:31:57.639][25][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"40"] encode complete
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"9097673292366183207"] resetting pool request
+[2026-03-16 04:31:57.639][25][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"40"] Request reset. Reason 0
+[2026-03-16 04:31:57.639][25][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"40"] destroying stream: 1 active remaining, readyForStream true, currentUnusedCapacity 1023
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] onDestroy
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"122","StreamId":"2428079631677683211"] Calling close on stream
+[2026-03-16 04:31:57.639][25][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"3343737874945886102"] router decoding data: 0
+[2026-03-16 04:31:57.639][25][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"40"] encode complete
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:1699] [Tags: "ConnectionId":"0","StreamId":"2328470919674658349"] upstream headers complete: end_stream=false
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"3343737874945886102"] resetting pool request
+[2026-03-16 04:31:57.639][25][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"40"] Request reset. Reason 0
+[2026-03-16 04:31:57.639][25][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"40"] destroying stream: 0 active remaining, readyForStream true, currentUnusedCapacity 1024
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.639][25][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.639][32][debug][http] [external/envoy/source/common/http/async_client_impl.cc:197] async http request response headers (end_stream=false):
+':status', '200'
+'content-type', 'application/grpc'
+
+[2026-03-16 04:31:57.639][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"40"] sent reset code=0
+[2026-03-16 04:31:57.639][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"40"] stream 35 closed: 0
+[2026-03-16 04:31:57.639][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"40"] Recouping 0 bytes of flow control window for stream 35.
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 7, stream_id: 53, end_stream: false
+[2026-03-16 04:31:57.639][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"40"] sent reset code=0
+[2026-03-16 04:31:57.639][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"40"] stream 31 closed: 0
+[2026-03-16 04:31:57.639][25][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"40"] Recouping 0 bytes of flow control window for stream 31.
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Received response headers response
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:154] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] applying headers response. body mode = NONE
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Finish external processing call
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:548] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Continuing processing
+[2026-03-16 04:31:57.639][32][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:1948] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] encoding headers via codec (end_stream=false):
+':status', '200'
+'date', 'Mon, 16 Mar 2026 04:31:56 GMT'
+'content-type', 'application/octet-stream'
+'x-envoy-upstream-service-time', '0'
+'server', 'envoy'
+
+[2026-03-16 04:31:57.639][32][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:2063] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Codec completed encoding stream.
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] onDestroy
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Calling close on stream
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"2328470919674658349"] router decoding data: 0
+[2026-03-16 04:31:57.639][32][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"39"] encode complete
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"2328470919674658349"] resetting pool request
+[2026-03-16 04:31:57.639][32][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"39"] Request reset. Reason 0
+[2026-03-16 04:31:57.639][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"39"] destroying stream: 2 active remaining, readyForStream true, currentUnusedCapacity 1022
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] onDestroy
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"123","StreamId":"10586333842071895262"] Calling close on stream
+[2026-03-16 04:31:57.639][32][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"7801050526037982502"] router decoding data: 0
+[2026-03-16 04:31:57.639][32][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"39"] encode complete
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"7801050526037982502"] resetting pool request
+[2026-03-16 04:31:57.639][32][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"39"] Request reset. Reason 0
+[2026-03-16 04:31:57.639][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"39"] destroying stream: 1 active remaining, readyForStream true, currentUnusedCapacity 1023
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.639][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"39"] sent reset code=0
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"39"] stream 53 closed: 0
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"39"] Recouping 0 bytes of flow control window for stream 53.
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"39"] sent reset code=0
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"39"] stream 43 closed: 0
+[2026-03-16 04:31:57.639][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"39"] Recouping 0 bytes of flow control window for stream 43.
+[2026-03-16 04:31:57.640][25][debug][connection] [external/envoy/source/common/network/connection_impl.cc:777] [Tags: "ConnectionId":"122"] remote close
+[2026-03-16 04:31:57.640][25][debug][connection] [external/envoy/source/common/network/connection_impl.cc:317] [Tags: "ConnectionId":"122"] closing socket: 0
+[2026-03-16 04:31:57.640][25][debug][conn_handler] [external/envoy/source/common/listener_manager/active_stream_listener_base.cc:124] [Tags: "ConnectionId":"122"] adding to cleanup list
+[2026-03-16 04:31:57.640][25][debug][connection] [external/envoy/source/common/network/connection_impl.cc:152] [Tags: "ConnectionId":"122"] Not closing conn, socket is not open
+[2026-03-16 04:31:57.640][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:777] [Tags: "ConnectionId":"123"] remote close
+[2026-03-16 04:31:57.640][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:317] [Tags: "ConnectionId":"123"] closing socket: 0
+[2026-03-16 04:31:57.640][32][debug][conn_handler] [external/envoy/source/common/listener_manager/active_stream_listener_base.cc:124] [Tags: "ConnectionId":"123"] adding to cleanup list
+[2026-03-16 04:31:57.640][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:152] [Tags: "ConnectionId":"123"] Not closing conn, socket is not open
+[2026-03-16 04:31:57.642][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 45, end_stream: false
+[2026-03-16 04:31:57.642][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 45, end_stream: false
+[2026-03-16 04:31:57.642][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 16384, stream_id: 45, end_stream: false
+[2026-03-16 04:31:57.642][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 2073, stream_id: 45, end_stream: false
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Received response body response
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:320] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Processing body response
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:389] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] FULL_DUPLEX_STREAMED body response is received and body_mode_: FULL_DUPLEX_STREAMED 
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:630] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Opening gRPC stream to external processor
+[2026-03-16 04:31:57.642][32][debug][router] [external/envoy/source/common/router/router.cc:537] [Tags: "ConnectionId":"0","StreamId":"12594489509000281771"] cluster 'ext_proc_cluster' match for URL '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+[2026-03-16 04:31:57.642][32][debug][router] [external/envoy/source/common/router/router.cc:809] [Tags: "ConnectionId":"0","StreamId":"12594489509000281771"] router decoding headers:
+':method', 'POST'
+':path', '/envoy.service.ext_proc.v3.ExternalProcessor/Process'
+':authority', 'ext_proc_cluster'
+':scheme', 'http'
+'te', 'trailers'
+'content-type', 'application/grpc'
+'x-envoy-internal', 'true'
+'x-forwarded-for', '10.244.0.13'
+
+[2026-03-16 04:31:57.642][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:330] [Tags: "ConnectionId":"39"] using existing fully connected connection
+[2026-03-16 04:31:57.642][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:247] [Tags: "ConnectionId":"39"] creating stream
+[2026-03-16 04:31:57.642][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:599] [Tags: "ConnectionId":"0","StreamId":"12594489509000281771"] pool ready
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:995] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Trying to encode filter protocol configurations
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1004] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Filter protocol configurations encoded 
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:23] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Start external processing call
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:33] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Traffic direction OUTBOUND: 300000 ms timer enabled
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:750] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Sending headers message
+[2026-03-16 04:31:57.642][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"12594489509000281771"] router decoding data: 178
+[2026-03-16 04:31:57.642][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Finish external processing call
+[2026-03-16 04:31:57.642][32][debug][router] [external/envoy/source/common/router/router.cc:1699] [Tags: "ConnectionId":"0","StreamId":"12594489509000281771"] upstream headers complete: end_stream=false
+[2026-03-16 04:31:57.643][32][debug][http] [external/envoy/source/common/http/async_client_impl.cc:197] async http request response headers (end_stream=false):
+':status', '200'
+'content-type', 'application/grpc'
+
+[2026-03-16 04:31:57.643][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1825] [Tags: "ConnectionId":"39"] Http2Visitor: remaining data payload: 7, stream_id: 55, end_stream: false
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:1596] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Received response headers response
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:154] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] applying headers response. body mode = NONE
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:42] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Finish external processing call
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:548] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Continuing processing
+[2026-03-16 04:31:57.643][32][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:1948] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] encoding headers via codec (end_stream=false):
+':status', '200'
+'date', 'Mon, 16 Mar 2026 04:31:56 GMT'
+'content-type', 'application/octet-stream'
+'x-envoy-upstream-service-time', '0'
+'server', 'envoy'
+
+[2026-03-16 04:31:57.643][32][debug][http] [external/envoy/source/common/http/conn_manager_impl.cc:2063] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Codec completed encoding stream.
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] onDestroy
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/processor_state.cc:63] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Traffic direction OUTBOUND: timer disabled
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Calling close on stream
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.643][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"12594489509000281771"] router decoding data: 0
+[2026-03-16 04:31:57.643][32][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"39"] encode complete
+[2026-03-16 04:31:57.643][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"12594489509000281771"] resetting pool request
+[2026-03-16 04:31:57.643][32][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"39"] Request reset. Reason 0
+[2026-03-16 04:31:57.643][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"39"] destroying stream: 1 active remaining, readyForStream true, currentUnusedCapacity 1023
+[2026-03-16 04:31:57.643][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:697] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] onDestroy
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/http/ext_proc/ext_proc.cc:663] [Tags: "ConnectionId":"124","StreamId":"18141338978958014989"] Calling close on stream
+[2026-03-16 04:31:57.643][32][debug][ext_proc] [external/envoy/source/extensions/filters/common/ext_proc/grpc_client_impl.h:135] Closing gRPC stream
+[2026-03-16 04:31:57.643][32][debug][router] [external/envoy/source/common/router/router.cc:966] [Tags: "ConnectionId":"0","StreamId":"14351159347125188268"] router decoding data: 0
+[2026-03-16 04:31:57.643][32][debug][client] [external/envoy/source/common/http/codec_client.cc:150] [Tags: "ConnectionId":"39"] encode complete
+[2026-03-16 04:31:57.643][32][debug][router] [external/envoy/source/common/router/upstream_request.cc:497] [Tags: "ConnectionId":"0","StreamId":"14351159347125188268"] resetting pool request
+[2026-03-16 04:31:57.643][32][debug][client] [external/envoy/source/common/http/codec_client.cc:167] [Tags: "ConnectionId":"39"] Request reset. Reason 0
+[2026-03-16 04:31:57.643][32][debug][pool] [external/envoy/source/common/conn_pool/conn_pool_base.cc:282] [Tags: "ConnectionId":"39"] destroying stream: 0 active remaining, readyForStream true, currentUnusedCapacity 1024
+[2026-03-16 04:31:57.643][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.643][32][debug][router] [external/envoy/source/common/router/router.cc:1145] Executing cleanup(): resetting retry_state_ and disabling timers
+[2026-03-16 04:31:57.643][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"39"] sent reset code=0
+[2026-03-16 04:31:57.643][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"39"] stream 55 closed: 0
+[2026-03-16 04:31:57.643][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"39"] Recouping 0 bytes of flow control window for stream 55.
+[2026-03-16 04:31:57.643][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1245] [Tags: "ConnectionId":"39"] sent reset code=0
+[2026-03-16 04:31:57.643][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1404] [Tags: "ConnectionId":"39"] stream 45 closed: 0
+[2026-03-16 04:31:57.643][32][debug][http2] [external/envoy/source/common/http/http2/codec_impl.cc:1467] [Tags: "ConnectionId":"39"] Recouping 0 bytes of flow control window for stream 45.
+[2026-03-16 04:31:57.643][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:777] [Tags: "ConnectionId":"124"] remote close
+[2026-03-16 04:31:57.643][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:317] [Tags: "ConnectionId":"124"] closing socket: 0
+[2026-03-16 04:31:57.643][32][debug][conn_handler] [external/envoy/source/common/listener_manager/active_stream_listener_base.cc:124] [Tags: "ConnectionId":"124"] adding to cleanup list
+[2026-03-16 04:31:57.643][32][debug][connection] [external/envoy/source/common/network/connection_impl.cc:152] [Tags: "ConnectionId":"124"] Not closing conn, socket is not open

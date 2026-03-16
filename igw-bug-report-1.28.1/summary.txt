@@ -1,0 +1,6 @@
+istio_version=1.28.1
+cluster_name=igw-bug-1-28-1
+gateway_url=http://172.18.0.3:30540/v1/chat/completions
+baseline_no_header_http_code=404
+ok=300 bad=0 missing_done=0 total=300
+config_dump_extproc_refs=8
